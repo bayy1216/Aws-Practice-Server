@@ -7,19 +7,24 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
       - name: Node.js setup
+        uses: actions/setup-node@v3
         with:
           node-version: "18"
+
       - name: Install npm dependencies
         run: npm ci
-      -name: install and run redis-server
+        
+      - name: install and run redis-server
         run: |
           sudo apt-get update
           sudo apt-get install -y redis-server
           redis-server --daemonize yes --requirepass test_env --port 6380
+
       - name: Run tests
-        run: npm run test
+        run: npm run test:ci
       
       - name: test build
         run: npm run build
