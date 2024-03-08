@@ -24,7 +24,7 @@ jobs:
           redis-server --daemonize yes --requirepass test_env --port 6380
 
       - name: Run tests
-        run: npm run test
+        run: npm run test:ci
       
       - name: test build
         run: npm run build
