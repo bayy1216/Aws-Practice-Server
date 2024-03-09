@@ -17,8 +17,8 @@ jobs:
 
       - name: Set up known hosts
         run: |
-        echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
       - name: SSH and deploy
         run: |
