@@ -1,0 +1,33 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Set up known hosts
+        run: |
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: SSH and deploy
+        run: |
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_PUBLIC_IP }} "
+            cd Aws-Practice-Server/
+            git pull || exit 1
+            npm install || exit 1
+            npm run build || exit 1
+            sudo pkill node || exit 1
+            sudo npm run start & npx wait-on http://localhost
+            exit
+          "

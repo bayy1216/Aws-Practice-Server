@@ -13,7 +13,7 @@ export const createApp = (client : RedisClient) => {
   app.use(express.json());
   
   app.get('/', (request, response) => {
-    response.status(200).send('Hello World From Express');
+    response.status(200).send('Hello World From Express, deployed by github actions!');
   });
 
   app.post('/messages', async (request, response) => {
