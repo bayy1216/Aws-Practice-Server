@@ -1,0 +1,11 @@
+# artillery run load-test.yml
+config:
+  target: http://www.reditus.site
+  phases:
+    - duration: 5
+      arrivalRate: 1000
+
+scenarios:
+  - flow:
+      - get:
+          url: "/messages"
