@@ -1,4 +1,6 @@
 # artillery run load-test.yml
+# artillery run -o myReport load-test.yml
+# artillery report myReport
 config:
   target: http://www.reditus.site
   phases:

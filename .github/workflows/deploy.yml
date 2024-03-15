@@ -27,7 +27,6 @@ jobs:
             git pull || exit 1
             npm install || exit 1
             CI='false' npm run build
-            sudo pkill node || exit 1
-            sudo npm run start & npx wait-on http://localhost
+            sudo pm2 reload
             exit
           "
