@@ -11,7 +11,7 @@ const REDIS_URL = "redis://default:test_env@localhost:6380";
 
 beforeAll(async () => {
   client = redis.createClient({
-    url: REDIS_URL
+    url: process.env.TEST_REDIS_URL
   });
   await client.connect();
 

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - TEST_REDIS_URL=redis://redis:6379
+    command: npm run test:ci
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"

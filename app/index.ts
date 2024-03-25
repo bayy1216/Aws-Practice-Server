@@ -12,15 +12,32 @@ if(!PORT || !REDIS_URL) {
 
 const startServer = async () => {
   console.log('Trying to start server'); 
+  const {hello} = process.env;
+  console.log(`hello ${hello}`);
   const client = redis.createClient({
     url: REDIS_URL
   });
   await client.connect();
 
   const app = createApp(client);
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+  });
+
+  return server;
+};
+
+const server = startServer();
+
+
+const gracefulShutdown = async () => {
+  const _server = await server;
+  _server.close(() => {
+    console.log('Server gracefulShutdown!');
+    process.exit(1);
   });
 };
 
-startServer();
+process.on("SIGTERM", gracefulShutdown);
+
+process.on("SIGINT", gracefulShutdown);
