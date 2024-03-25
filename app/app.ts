@@ -16,6 +16,11 @@ export const createApp = (client : RedisClient) => {
     response.status(200).send('Hello World From Express, deployed by github actions!!');
   });
 
+  app.get('/crash', (request, response) => {
+    console.log('Crashing the server');
+    process.exit();
+  });
+
   function fibo(n: number): number{
     if (n <= 1) return n;
     return fibo(n - 1) + fibo(n - 2);

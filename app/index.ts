@@ -12,6 +12,8 @@ if(!PORT || !REDIS_URL) {
 
 const startServer = async () => {
   console.log('Trying to start server'); 
+  const {hello} = process.env;
+  console.log(`hello ${hello}`);
   const client = redis.createClient({
     url: REDIS_URL
   });

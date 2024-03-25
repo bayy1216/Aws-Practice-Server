@@ -2,10 +2,10 @@
 # artillery run -o myReport load-test.yml
 # artillery report myReport
 config:
-  target: http://www.reditus.site
+  target: http://my-express-lb-247156369.ap-northeast-2.elb.amazonaws.com
   phases:
     - duration: 5
-      arrivalRate: 1000
+      arrivalRate: 2000
 
 scenarios:
   - flow:
