@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  AWS_REGION: ap-northeast-2
+
 permissions:
   id-token: write # This is required for reading the JWT
   contents: read # This is required for reading the repository files
