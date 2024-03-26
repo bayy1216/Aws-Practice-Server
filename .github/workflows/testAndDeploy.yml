@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  ECR_REGISTRY: my-express
+  ECR_REPOSITORY: my-express
   ECS_CLUSTER: my-express-cluster
   ECS_SERVICE: my-express-service
   ECS_TASK_DEFINITION: ./task_definition.json
