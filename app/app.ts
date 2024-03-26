@@ -13,7 +13,7 @@ export const createApp = (client : RedisClient) => {
   app.use(express.json());
   
   app.get('/', (request, response) => {
-    response.status(200).send('Hello World From Express, deployed by github actions!!');
+    response.status(200).send('Hello World From Express, deployed ECS by github actions!!');
   });
 
   app.get('/crash', (request, response) => {
