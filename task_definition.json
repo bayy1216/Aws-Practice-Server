@@ -1,0 +1,102 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:766838695223:task-definition/my-express-td:4",
+  "containerDefinitions": [
+      {
+          "name": "my-express",
+          "cpu": 0,
+          "portMappings": [
+              {
+                  "name": "express-80-tcp",
+                  "containerPort": 80,
+                  "hostPort": 80,
+                  "protocol": "tcp",
+                  "appProtocol": "http" 
+              }
+          ],
+          "essential": true,
+          "environment": [
+              {
+                  "name": "PORT",
+                  "value": "80"
+              },
+              {
+                  "name": "REDIS_URL",
+                  "value": "redis://redis-6379-tcp.my-express-cluster:6379"
+              }
+          ],
+          "environmentFiles": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "secrets": [
+              {
+                  "name": "hello",
+                  "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:766838695223:secret:my-express-secrets-PU3SXV:hello::"
+              }
+          ],
+          "ulimits": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-create-group": "true",
+                  "awslogs-group": "/ecs/my-express-td",
+                  "awslogs-region": "ap-northeast-2",
+                  "awslogs-stream-prefix": "ecs"
+              },
+              "secretOptions": []
+          },
+          "systemControls": []
+      }
+  ],
+  "family": "my-express-td",
+  "executionRoleArn": "arn:aws:iam::766838695223:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 4,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+      {
+          "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+      },
+      {
+          "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+      },
+      {
+          "name": "ecs.capability.secrets.asm.environment-variables"
+      },
+      {
+          "name": "ecs.capability.execution-role-ecr-pull"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+          "name": "ecs.capability.task-eni"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+      }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+      "EC2",
+      "FARGATE"
+  ],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024",
+  "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2024-03-25T04:56:37.824Z",
+  "registeredBy": "arn:aws:iam::766838695223:root",
+  "tags": []
+}
